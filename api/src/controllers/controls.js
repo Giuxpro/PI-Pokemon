@@ -17,7 +17,8 @@ const getAllPokemons = async ()=>{
                     defense: e.data.stats[2].base_stat,
                     speed: e.data.stats[5].base_stat,
                     height: e.data.height,
-                    weight: e.data.weight
+                    weight: e.data.weight,
+                    type: e.data.types.map(e => e.type.name)
                 })
             })
             return pokeArr
@@ -35,9 +36,9 @@ const pokeDbInfo = async () =>{
     const dbInfo = await Pokemon.findAll({
         include:{
             model:Type,
-            attributes: ["name"],
+            attributes:["name"],
             through:{
-                attributes:[]
+                attributes:[],
             }
         }
     })
@@ -88,7 +89,7 @@ const getPokemonType = async (req,res) =>{
        const {name} = results[i]
        
        await Type.findOrCreate({
-           where: { name: name}
+           where: {name: name}
        })
        
     }
@@ -98,9 +99,37 @@ const getPokemonType = async (req,res) =>{
         
 }
 
+const createPokemon = async (req,res)=>{
+    const { name, type, image, life, attack, defense, speed, height, weight} = req.body;
+try{
+    const pokemonCreate = await Pokemon.create({
+        
+        name,
+        image,
+        life,
+        attack,
+        defense,
+        speed,
+        height,
+        weight
+    })
+
+    const pokemonType = await Type.findAll({
+        where:{name:type}
+    });
+    //console.log(pokemonCreate.__proto__)
+    await pokemonCreate.addType(pokemonType)
+    res.status(200).json(pokemonCreate)
+
+}catch(error){
+    console.log("error en createPokemon" + error)
+}
+}
+
 module.exports={
     getAllPokemons,
     allPokemos,
     getPokemonById,
-    getPokemonType
+    getPokemonType,
+    createPokemon
 }
