@@ -32,6 +32,18 @@ function rootReducer(state = initialState, action){
         ...state,
         pokemons: SortDbApi,
       }
+    
+    case "SEARCH":
+      return{
+        ...state,
+        pokemons: action.payload,
+      }
+
+    case "POST_POKE":
+      return{
+        ...state
+      }
+
     case "SORT_BY_STRENGTH":
       const allSortStrength = action.payload === "hight"
       ? state.pokemons.sort((a,b)=>{
@@ -64,20 +76,20 @@ function rootReducer(state = initialState, action){
       const allSortAlpha = action.payload === "des"
       ? state.pokemons.sort((a,b)=>{
           
-          if(a.name > b.name){
+          if(a.name.toLowerCase() > b.name.toLowerCase()){
               return -1;
           }
-          if(a.name < b.name){
+          if(a.name.toLowerCase() < b.name.toLowerCase()){
               return 1;
           }
           return 0;
 
       }): state.pokemons.sort((a,b)=>{
 
-          if(a.name > b.name){
+          if(a.name.toLowerCase() > b.name.toLowerCase()){
               return 1;
           }
-          if(a.name < b.name){
+          if(a.name.toLowerCase() < b.name.toLowerCase()){
               return -1;
           }
           return 0;

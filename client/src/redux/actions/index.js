@@ -49,3 +49,20 @@ export function sortAlphabeticaly(payload){
         payload: payload
     }
 }
+
+export function searchBar(name){
+    return async function(dispatch){
+        const data = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+        return dispatch({
+            type: "SEARCH",
+            payload: data.data
+        })
+    }
+}
+
+export function postPokemon(payload){
+    return async function(dispatch){
+        const data = await axios.post(`http://localhost:3001/pokemons`,payload)
+        return data
+    }
+}

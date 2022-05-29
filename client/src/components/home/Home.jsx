@@ -9,6 +9,7 @@ import Types from "../filters/Types";
 import SortByCreateOrApi from "../filters/SortByCreateOrApi";
 import SortByStrength from "../filters/SortByStrength";
 import SortAlphabeticaly from "../filters/SortAlphabeticaly";
+import Search from "../search_bar/SeachBar";
 
 export default function Home(){
     const dispatch = useDispatch();
@@ -49,9 +50,13 @@ export default function Home(){
                 paginado={paginado}
                 />
             </div>
+
+            <Search/>
+
             <Link to="/pokemons">
                 <button>Create Pokemon</button>
             </Link>
+            
             <button onClick={e => {handleReload(e)}}>Reload Pokemons</button>
 
             <div>
@@ -75,7 +80,7 @@ export default function Home(){
                     return(
                         <div key={e.id}>
                             <Link to={"/home/"+ e.id}>
-                                <Card image={e.image} name={e.name} type={e.type}/>
+                                <Card image={e.image} name={e.name} type={e.type} attack={e.attack}/>
                             </Link>
                         </div>
                     )
