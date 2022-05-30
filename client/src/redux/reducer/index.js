@@ -11,7 +11,7 @@ function rootReducer(state = initialState, action){
       return{
         ...state,
         pokemons: action.payload,
-        backUpPoke: action.payload
+        backUpPoke: action.payload,
       }
     case "GET_TYPES":
       return{

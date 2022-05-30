@@ -72,7 +72,9 @@ export default function Home(){
                 setSortAlpha={setSortAlpha}
                 />
                
-                <Types/>
+                <Types
+                setCurrentPage={setCurrentPage}
+                />
             </div>
 
             {

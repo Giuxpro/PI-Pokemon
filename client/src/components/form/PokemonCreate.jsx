@@ -36,12 +36,43 @@ export default function CreatePokemon(){
     function handleSelect(e){
         setInput({
             ...input,
-            types: [...input.types, e.target.value]
+            types: [...new Set([...input.types, e.target.value])]
         })
     }
 
+    function handleDelete(e){
+        setInput({
+            ...input,
+            types: input.types.filter( type => type !== e),
+           
+        })
+    }
+
+    let regexRating =/[+-]?([0-9]*[.])?\b[0-5]{1,1}\b/; //regex 1-5 decimal inclusive
+    let expReg = /^\b[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s0-9]+$/;
     function handleSubmit(e){
         e.preventDefault()
+
+        if(!input.name){
+            return alert('Enter Pokemon name');
+        }else if(!expReg.test(input.name)){
+            return alert('The name must only have letters or numbers')
+        }else if(!regexRating.test(input.life)){
+            return alert('Enter a Hp points ');
+        }else if(!regexRating.test(input.attack)){
+            return alert('Pokemon must have attack points');
+        }else if(!regexRating.test(input.defense)){
+            return alert('Pokemon must have defense points');
+        }else if(!regexRating.test(input.speed)){
+            return alert('Pokemon must have speed points');
+        }else if(!regexRating.test(input.height)){
+            return alert('Pokemon must have height points');
+        }else if(!regexRating.test(input.weight)){
+            return alert('Pokemon must have weight points');
+        }else if(!input.types.length){
+            return alert('Enter a Type Pokemon');
+        }
+
         dispatch(postPokemon(input))
         alert("Pokemon Created!!")
         setInput({
@@ -71,6 +102,7 @@ export default function CreatePokemon(){
                     name="name"
                     onChange={e => handleChange(e)}
                     />
+                    {!input.name || !expReg.test(input.name)? <h4>{"Enter a Valid Name"}</h4>: false}
 
                 </div>
                 {/* ############################## */}
@@ -82,7 +114,7 @@ export default function CreatePokemon(){
                     name="life"
                     onChange={e => handleChange(e)}
                     />
-
+                    {!input.life || !expReg.test(input.life)? <h4 >{"Enter a Valid life"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -93,7 +125,7 @@ export default function CreatePokemon(){
                     name="attack"
                     onChange={e => handleChange(e)}
                     />
-
+                    {!input.attack || !expReg.test(input.attack)? <h4 >{"Enter a Valid attack"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -104,7 +136,7 @@ export default function CreatePokemon(){
                     name="defense"
                     onChange={e => handleChange(e)}
                     />
-
+                    {!input.defense || !expReg.test(input.defense)? <h4 >{"Enter a Valid defense"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -115,7 +147,7 @@ export default function CreatePokemon(){
                     name="speed"
                     onChange={e => handleChange(e)}
                     />
-
+                    {!input.speed || !expReg.test(input.speed)? <h4 >{"Enter a Valid Speed"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -126,7 +158,7 @@ export default function CreatePokemon(){
                     name="height"
                     onChange={e => handleChange(e)}
                     />
-
+                    {!input.height || !expReg.test(input.height)? <h4 >{"Enter a Valid Height"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -137,7 +169,7 @@ export default function CreatePokemon(){
                     name="weight"
                     onChange={e => handleChange(e)}
                     />
-
+                    {!input.weight || !expReg.test(input.weight)? <h4 >{"Enter a Valid Weight"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -148,7 +180,7 @@ export default function CreatePokemon(){
                     name="image"
                     onChange={e => handleChange(e)}
                     />
-
+                    {/* {!input.image || !expReg.test(input.image)? <h4 >{"Enter a Valid Name"}</h4>: false} */}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -163,9 +195,23 @@ export default function CreatePokemon(){
                     </select>
                     <ul><li>{input.types.map(e => e +" ,")}</li></ul>
                     
+                    
                     <button type="submit">Create Pokemon</button>
                 </div>
             </form>
+                <div>
+                    {
+                        input.types.map(e =>
+                            
+                            <div key={e}>
+                                <button onClick={()=> handleDelete(e)}>{e}</button>
+                                
+                                {/* <button onClick={(e) => handleDelete(e)}>X</button> */}
+                            </div>
+                            
+                        )
+                    }
+                </div>
         </div>
     )
 }

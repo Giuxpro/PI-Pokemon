@@ -4,12 +4,13 @@ import { filterPokeByTypes } from "../../redux/actions";
 
 
 
-export default function Types(){
+export default function Types({setCurrentPage}){
     const dispatch = useDispatch();
     const types = useSelector(state => state.types)
 
  function handleFilterByTypes(e){
     dispatch(filterPokeByTypes(e.target.value))
+    setCurrentPage(1)
  }
 
    return(
