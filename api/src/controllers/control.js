@@ -184,9 +184,10 @@ const createPokemon = async (req, res) => {
     const pokemonType = await Type.findAll({
       where: { name: type },
     });
-    //console.log(pokemonCreate.__proto__)
-    await pokemonCreate.addType(pokemonType);
-    res.status(200).json(pokemonCreate);
+   
+    pokemonCreate.addType(pokemonType);
+    
+    res.status(200).send(pokemonCreate);
   } catch (error) {
     console.log("error en createPokemon" + error);
   }
