@@ -193,7 +193,7 @@ export default function CreatePokemon(){
                             })
                         }
                     </select>
-                    <ul><li>{input.types.map(e => e +" ,")}</li></ul>
+                    {/* <ul><li>{input.types.map(e => e +" ,")}</li></ul> */}
                     
                     
                     <button type="submit">Create Pokemon</button>
@@ -206,7 +206,6 @@ export default function CreatePokemon(){
                             <div key={e}>
                                 <button onClick={()=> handleDelete(e)}>{e}</button>
                                 
-                                {/* <button onClick={(e) => handleDelete(e)}>X</button> */}
                             </div>
                             
                         )

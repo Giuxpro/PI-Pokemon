@@ -81,7 +81,7 @@ export default function Home(){
                 currentPoke?.map( e =>{
                     return(
                         <div key={e.id}>
-                            <Link to={"/home/"+ e.id}>
+                            <Link to={"/pokemons/"+ e.id}>
                                 <Card image={e.image} name={e.name} type={e.type} attack={e.attack}/>
                             </Link>
                         </div>

@@ -2,6 +2,7 @@ const initialState = {
   pokemons: [],
   backUpPoke: [],
   types: [],
+  detail: [],
 }
 
 
@@ -38,12 +39,17 @@ function rootReducer(state = initialState, action){
         ...state,
         pokemons: action.payload,
       }
-
+    case "POKE_ID":
+      return{
+        ...state,
+        detail:action.payload,
+      }
+  
     case "POST_POKE":
       return{
         ...state
       }
-
+      
     case "SORT_BY_STRENGTH":
       const allSortStrength = action.payload === "hight"
       ? state.pokemons.sort((a,b)=>{
