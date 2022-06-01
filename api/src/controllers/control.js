@@ -21,7 +21,7 @@ const getAllPokemons = async () => {
           defense: el.stats[5].base_stat,
           height: el.height,
           weight: el.weight,
-          type: el.types.map((e) => e.type.name),
+          types: el.types.map((e) => e.type),
         };
       })
     );
@@ -68,7 +68,7 @@ const showAllPokemon = async (name) => {
         defense: p.stats[5].base_stat,
         height: p.height,
         weight: p.weight,
-        type: p.types.map((t) => t.type.name),
+        types: p.types.map((t) => t.type),
       };
       return pokeObj;
     });
@@ -136,7 +136,7 @@ const getPokemonById = async (req, res) => {
           speed: e.stats[5].base_stat,
           height: e.height,
           weight: e.weight,
-          type: e.types.map((e) => e.type.name),
+          types: e.types.map((e) => e.type),
           image: e.sprites.other.home.front_default,
         };
         return pokeObj;
@@ -182,10 +182,11 @@ const createPokemon = async (req, res) => {
     });
 
     const pokemonType = await Type.findAll({
-      where: { name: type },
+      
+      where:  {name: type },
     });
    
-    pokemonCreate.addType(pokemonType);
+    pokemonCreate.addTypes(pokemonType);
     
     res.status(200).send(pokemonCreate);
   } catch (error) {
