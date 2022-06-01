@@ -6,7 +6,7 @@ export default function Card({image, name, type, attack}){
     return(
         <div>
             <h3>{name}</h3>
-            <h5>{type}</h5>
+            <h5>{type?.map(e =><div key={e.name}>{e.name}</div> )}</h5>
             <h5>{attack}</h5>
             <img src={regexUrl.test(image)? image : img} alt="poke_card" />
         </div>

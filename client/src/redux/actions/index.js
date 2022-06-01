@@ -56,7 +56,7 @@ export function searchBar(name){
         const data = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
         return dispatch({
             type: "SEARCH",
-            payload: data.data
+            payload: data.data,
         })
     }
 }
