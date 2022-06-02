@@ -43,7 +43,9 @@ export default function Home(){
 
     return(
         <div className={styles.homeContainer}>
-            <h1>Welcome To Pokemons Api</h1>
+            <div className={styles.homeTitleContainer}>
+                <h1 className={styles.homeTitle}>Welcome To Pokemons Api</h1>
+            </div>
 
             <div className={styles.homeSearch}>
                 <Search/>
@@ -60,9 +62,9 @@ export default function Home(){
            
             <div className={styles.homeReloadCreate}>
                 <Link to="/pokemons">
-                    <button>Create Pokemon</button>
+                    <button className={styles.homeBtn}>Create Pokemon</button>
                 </Link>
-                <button onClick={e => {handleReload(e)}}>Reload Pokemons</button>
+                <button className={styles.homeBtn} onClick={e => {handleReload(e)}}>Reload Pokemons</button>
             </div>
             
 
@@ -72,7 +74,7 @@ export default function Home(){
                 setSortAlpha={setSortAlpha}
                 />
                 
-                <SortByCreateOrApi/>
+                <SortByCreateOrApi />
                 
                 <SortByStrength
                 setCurrentPage={setCurrentPage}
@@ -88,7 +90,7 @@ export default function Home(){
                     currentPoke?.map( e =>{
                         return(
                             <div key={e.id}>
-                                <Link to={"/pokemons/"+ e.id}>
+                                <Link className={styles.homeLink} to={"/pokemons/"+ e.id}>
                                     <Card image={e.image} name={e.name} type={e.types} attack={e.attack}/>
                                 </Link>
                             </div>

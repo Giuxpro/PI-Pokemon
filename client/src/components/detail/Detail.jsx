@@ -30,7 +30,7 @@ export default function PokemonDetail(){
                     <h4>{pokeDetail[0].speed}</h4>
                     <h4>{pokeDetail[0].height}</h4>
                     <h4>{pokeDetail[0].weight}</h4>
-                    <h4>{pokeDetail[0].types?.map(e =><div key={e}>{e.name}</div> )}</h4>
+                    <h4>{pokeDetail[0].types?.map(e =><div key={e.name}>{e.name}</div> )}</h4>
                 </div>
                 : <div><h4>Not Found</h4></div>
             }

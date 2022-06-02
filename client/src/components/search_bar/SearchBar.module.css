@@ -1,0 +1,24 @@
+.searchInput{
+    height: 2rem;
+    width: 25rem;
+    border-radius: 5px;
+    padding-left: 8px ;
+    font-size: 1rem;
+    border: 2px black solid;
+}
+.searchButtom{
+    height: 2.4rem;
+    width: 5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: black;
+    color: aliceblue;
+    transition: all 200ms;
+}
+.searchButtom:hover{
+    transform: scale(1.1);
+}
+.searchButtom:active{
+    background-color: rgb(88,186,56);
+}

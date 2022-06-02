@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 import { sortAlphabeticaly } from "../../redux/actions";
+import styles from "../filters/SortAlphabeticaly.module.css"
 
 
 export default function SortAlphabeticaly({setCurrentPage, setSortAlpha}){
@@ -15,7 +16,7 @@ export default function SortAlphabeticaly({setCurrentPage, setSortAlpha}){
     }
 
     return(
-        <select onChange={e => handleSortAlpha(e)}>
+        <select className={styles.alphaSelect}  onChange={e => handleSortAlpha(e)}>
             <option value="asc">Sort A-Z</option>
             <option value="des">Sort Z-A</option>
         </select>
