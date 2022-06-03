@@ -48,7 +48,9 @@ export default function Home(){
             </div>
 
             <div className={styles.homeSearch}>
-                <Search/>
+                <Search
+                setCurrentPage={setCurrentPage}
+                />
             </div>
 
             <div className={styles.homePaginado}>
@@ -85,14 +87,15 @@ export default function Home(){
                 setCurrentPage={setCurrentPage}
                 />
             </div>
+            
             <div className={styles.homeCardsRender}>
                 {
                     currentPoke?.map( e =>{
                         return(
-                            <div key={e.id}>
-                                <Link className={styles.homeLink} to={"/pokemons/"+ e.id}>
-                                    <Card image={e.image} name={e.name} type={e.types} attack={e.attack}/>
-                                </Link>
+                            <div className={styles.homeCardRender2} key={e.id}>
+                                {/* <Link className={styles.homeLink} to={"/pokemons/"+ e.id}> */}
+                                    <Card image={e.image} name={e.name} types={e.types} attack={e.attack} id={e.id}/>
+                                {/* </Link> */}
                             </div>
                         )
                     })

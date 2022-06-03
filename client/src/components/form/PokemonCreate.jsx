@@ -8,7 +8,7 @@ export default function CreatePokemon(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const types = useSelector( state => state.types)
-
+    console.log(types)
     const [input, setInput] = useState({
         name:"",
         image:"",

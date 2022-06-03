@@ -77,3 +77,9 @@ export function getPokeById(id){
         })
     }
 }
+
+export function cleanDetail(){
+    return{
+        type: "CLEAN_DETAIL",
+    }
+}

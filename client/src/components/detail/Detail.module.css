@@ -1,0 +1,132 @@
+
+.detailContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 5rem;
+    
+}
+.detailImgContainer{
+    
+    height: 300px;
+    width: 400px;
+    background-color: rgb(32, 210, 53);
+    border-radius: 60px;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    backdrop-filter: blur(8px);
+}
+.detailImg{
+    position: relative;
+    top: -180px;
+    transition: all 300ms;
+}
+.detailImg:hover{
+    transform: scale(1.1);
+}
+.detailTypeContainer{
+    border-radius: 15px;
+    border: solid 4px rgb(32, 210, 53);
+}
+.detailTypeH4{
+    margin: 8px;
+}
+.detailSetDisplay{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    height: 40px;
+}
+.detailId{
+    color: rgb(203, 201, 55);
+}
+.detailLife{
+    color: #f80606;
+    margin: 0px 0px 0px 10px;
+}
+.detailDefense{
+    color: rgb(32, 210, 53);
+    margin: 0px 0px 0px 10px;
+}
+.detailAttack{
+    color: #f80606;
+    margin: 0px 0px 0px 10px;
+}
+.detailSpeed{
+    color: #060af8;
+    margin: 0px 0px 0px 10px;
+}
+.detailWH{
+    color: #626265;
+    margin: 0px 0px 0px 10px;
+}
+.type{
+ margin: 10px 0px 0px 0px;
+}
+
+.detailBtn {
+    --color: #00A97F;
+    --color2: rgb(10, 25, 30);
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 6px;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+   }
+   
+   .detailBtn::after, .detailBtn::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-51%, -51%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+   }
+   
+   .detailBtn::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .detailBtn:hover::before {
+    transform: skew(44deg) rotate(180deg) translate(-50%, -50%);
+   }
+   
+   .detailBtn:hover::after {
+    transform: skew(44deg) translate(-50%, -50%);
+   }
+   
+   .detailBtn:hover {
+    color: var(--color2);
+   }
+   
+   .detailBtn:active {
+    filter: brightness(.7);
+    transform: scale(.98);
+   }
+
+   .detailName{
+       font-size: 3rem;
+       transition: all 300ms;
+   }
+   .detailName:hover{
+       transform: scale(1.1);
+   }
+

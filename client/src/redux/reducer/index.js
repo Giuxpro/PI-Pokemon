@@ -15,6 +15,7 @@ function rootReducer(state = initialState, action){
         backUpPoke: action.payload,
       }
     case "GET_TYPES":
+      
       return{
         ...state,
         types: action.payload,
@@ -44,6 +45,11 @@ function rootReducer(state = initialState, action){
       return{
         ...state,
         detail:action.payload,
+      }
+    case "CLEAN_DETAIL":
+      return{
+        ...state,
+        detail:[]
       }
   
     case "POST_POKE":

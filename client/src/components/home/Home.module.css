@@ -1,21 +1,21 @@
 .homeContainer{
-/* display: flex;
-flex-direction: column;
-align-items: center; */
 height: auto;
 background-image: url("../../assets/pokeland.jpg");
 background-repeat: no-repeat;
 background-size: cover;
 
+
 }
 .homeCardsRender{
-    /* display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; */
     display: grid;
     grid-template-columns: repeat(auto-fill, 245px);
     gap: 5px;
-    
+    margin: 0rem 4rem 0rem 4rem;
+    justify-content: center;
+}
+.homeCardRender2{
+    display: flex;
+    justify-content: center;
 }
 .homeLink{
     text-decoration: none;
@@ -52,7 +52,7 @@ background-size: cover;
 }
 .homeFiltersContainer{
     height: 3rem;
-    margin: 1.5rem;
+    margin: 1.5rem 0px 5rem 0px;
 }
 
 .homeFilter{

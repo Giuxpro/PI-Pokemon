@@ -1,31 +1,93 @@
 
 .cardImg{
     height: 150px;
-    width: 150px;
+    width: 150px; 
+    position: relative;
+    top: -60px;
+    border-radius: 20px;
 }
 
 .cardContainer {
     width: 200px;
-    height: 260px;
-    margin-bottom: 15px;
-    background-color: #212121;
+    height: 240px;
+    margin-bottom: 70px;
+    background: rgb(220, 235, 211);
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    backdrop-filter: blur(5px);
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
     
+   }
+   .cardImgContainer{
+    background: rgb(32, 210, 53);
+    border-bottom-left-radius: 15px ;
+    border-bottom-right-radius: 15px ;
+    height: 100px;
+    box-shadow: 0 0 10px rgb(0, 0, 0);
+    backdrop-filter: blur(5px);
     transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 1s,
                  transform cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
-   }
-   
-   .cardContainer:hover {
+}
+.cardImgContainer:hover{
     border-bottom-right-radius: 50px;
     border-top-left-radius: 50px;
     transform: scale(1.05);
-   }
-   .cardName{
-    color: aliceblue;
-   }
-   .cardTypes{
+}
+.cardName{
+    color: rgb(40, 44, 47);
+    margin: 15px 0px 10px 0px;
+    font-size: 1.5rem;
+    transition: all 300ms;
+}
+.cardName:hover{
+    transform: scale(1.1);
+}
+.cardTypesAndAttackContainer{
+    display: flex;
+    justify-content: space-evenly;
+}
+.cardAttakTitle{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-left: 5px;
+    color: rgb(99, 97, 97);
+}
+.cardTypesTitle{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-right: 15px;
+    color: rgb(99, 97, 97);
+}
+.cardAttackAndTitleContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+.cardTypes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    font-size: 0.9rem;
+}
+.cardAttack{
+    margin:  0px 0px 0px 0px;
+    font-size: 0.9rem;
+    color: rgb(251, 65, 65);
+    
+}
+.cardTypes2{
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px
+}
+.cardLink{
+    text-decoration: none;
+}
 
-   }
-   .cardAttack{
 
-   }
    

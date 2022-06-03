@@ -4,18 +4,20 @@ import { useDispatch } from "react-redux";
 import {searchBar} from "../../redux/actions"
 import styles from "../search_bar/SearchBar.module.css"
 
-export default function Search(){
+export default function Search({setCurrentPage}){
     const dispatch = useDispatch();
     const [name, setName] = useState("")
 
     function handleinputChange(e){
         setName(e.target.value)
+        
     }
 
     function handleSubmit(e){
         e.preventDefault();
         dispatch(searchBar(name))
         setName("")
+        setCurrentPage(1)
     }
 
     return(
