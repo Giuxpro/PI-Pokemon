@@ -1,14 +1,15 @@
 import React,{useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {postPokemon, getTypes} from "../../redux/actions"
+import {postPokemon, getTypes} from "../../redux/actions";
+import styles from "../form/PokemonCreate.module.css";
 
 
 export default function CreatePokemon(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const types = useSelector( state => state.types)
-    console.log(types)
+    const [errors, setErrors] = useState({})
     const [input, setInput] = useState({
         name:"",
         image:"",
@@ -22,8 +23,40 @@ export default function CreatePokemon(){
     })
 
     useEffect(()=>{
-        dispatch(getTypes())
+        dispatch(getTypes());
+        
     },[dispatch])
+
+
+    function validation(input){
+    let regexNum = /^[1-9]$|^[1-9][0-9]$|^(100)$/; // regex for number only between 1 to 600
+    let RegexName = new RegExp(/^\b[A-Za-z\s]+$/g)
+    // let regexRating =/[+-]?([0-9]*[.])?\b[0-5]{1,1}\b/; //regex 1-5 decimal inclusive
+    // let expReg = /^\b[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s0-9]+$/; //regex letters and numbers without especial chart
+        const error = {};
+
+        if(!input.name){
+           error.name = 'Enter Pokemon name';
+        }else if(!RegexName.test(input.name)){
+            error.name = 'The name must only have letters or numbers'
+        }else if(!regexNum.test(input.life)){
+            error.life = 'Enter a Hp points ';
+        }else if(!regexNum.test(input.attack)){
+            error.attack = 'Pokemon must have attack points';
+        }else if(!regexNum.test(input.defense)){
+            error.defense = 'Pokemon must have defense points';
+        }else if(!regexNum.test(input.speed)){
+            error.speed = 'Pokemon must have speed points';
+        }else if(!regexNum.test(input.height)){
+            error.height = 'Pokemon must have height points';
+        }else if(!regexNum.test(input.weight)){
+            error.weight = 'Pokemon must have weight points';
+        }else if(!input.types.length){
+            error.types = 'Enter a Type Pokemon';
+        }
+
+        return error;
+    }
 
 
     function handleChange(e){
@@ -31,6 +64,10 @@ export default function CreatePokemon(){
             ...input,
             [e.target.name]: e.target.value,
         })
+        setErrors(validation({
+            ...input,
+            [e.target.name]:e.target.value
+        }))
     }
 
     function handleSelect(e){
@@ -53,29 +90,30 @@ export default function CreatePokemon(){
     function handleSubmit(e){
         e.preventDefault()
 
-        if(!input.name){
-            return alert('Enter Pokemon name');
-        }else if(!expReg.test(input.name)){
-            return alert('The name must only have letters or numbers')
-        }else if(!regexRating.test(input.life)){
-            return alert('Enter a Hp points ');
-        }else if(!regexRating.test(input.attack)){
-            return alert('Pokemon must have attack points');
-        }else if(!regexRating.test(input.defense)){
-            return alert('Pokemon must have defense points');
-        }else if(!regexRating.test(input.speed)){
-            return alert('Pokemon must have speed points');
-        }else if(!regexRating.test(input.height)){
-            return alert('Pokemon must have height points');
-        }else if(!regexRating.test(input.weight)){
-            return alert('Pokemon must have weight points');
-        }else if(!input.types.length){
-            return alert('Enter a Type Pokemon');
-        }
 
-        dispatch(postPokemon(input))
-        alert("Pokemon Created!!")
-        setInput({
+        // if(!input.name){
+        //     return alert('Enter Pokemon name');
+        // }else if(!expReg.test(input.name)){
+        //     return alert('The name must only have letters or numbers')
+        // }else if(!regexRating.test(input.life)){
+        //     return alert('Enter a Hp points ');
+        // }else if(!regexRating.test(input.attack)){
+        //     return alert('Pokemon must have attack points');
+        // }else if(!regexRating.test(input.defense)){
+        //     return alert('Pokemon must have defense points');
+        // }else if(!regexRating.test(input.speed)){
+        //     return alert('Pokemon must have speed points');
+        // }else if(!regexRating.test(input.height)){
+        //     return alert('Pokemon must have height points');
+        // }else if(!regexRating.test(input.weight)){
+        //     return alert('Pokemon must have weight points');
+        // }else if(!input.types.length){
+        //     return alert('Enter a Type Pokemon');
+        // }
+
+        if(Object.keys(errors).length===0){
+            dispatch(postPokemon(input))
+            setInput({
             name:"",
             image:"",
             life:"",
@@ -84,14 +122,32 @@ export default function CreatePokemon(){
             speed:"",
             height:"",
             weight:"",
-            types:[]
-        })
-        navigate("/home")
+            types:[] 
+            })
+            alert('Pokemon created successfully')
+            navigate("/home")
+        }else{
+            alert('Complete the form correctly')
+        }
+        // dispatch(postPokemon(input))
+        // alert("Pokemon Created!!")
+        // setInput({
+        //     name:"",
+        //     image:"",
+        //     life:"",
+        //     attack:"",
+        //     defense:"",
+        //     speed:"",
+        //     height:"",
+        //     weight:"",
+        //     types:[]
+        // })
+        // navigate("/home")
     }
 
     return(
-        <div>
-            <Link to="/home"><button>Back</button></Link>
+        <div className={styles.createContainer}>
+        
             <h1>Create a new Pokemon!</h1>
             <form onSubmit={e => handleSubmit(e)}>
                 <div>
@@ -102,7 +158,7 @@ export default function CreatePokemon(){
                     name="name"
                     onChange={e => handleChange(e)}
                     />
-                    {!input.name || !expReg.test(input.name)? <h4>{"Enter a Valid Name"}</h4>: false}
+                    {errors.name || !expReg.test(errors.name)? <h4>{"Enter a Valid Name"}</h4>: false}
 
                 </div>
                 {/* ############################## */}
@@ -114,7 +170,7 @@ export default function CreatePokemon(){
                     name="life"
                     onChange={e => handleChange(e)}
                     />
-                    {!input.life || !expReg.test(input.life)? <h4 >{"Enter a Valid life"}</h4>: false}
+                    {errors.life || !expReg.test(errors.life)? <h4 >{"Enter a Valid life"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -125,7 +181,7 @@ export default function CreatePokemon(){
                     name="attack"
                     onChange={e => handleChange(e)}
                     />
-                    {!input.attack || !expReg.test(input.attack)? <h4 >{"Enter a Valid attack"}</h4>: false}
+                    {errors.attack || !expReg.test(errors.attack)? <h4 >{"Enter a Valid attack"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -136,7 +192,7 @@ export default function CreatePokemon(){
                     name="defense"
                     onChange={e => handleChange(e)}
                     />
-                    {!input.defense || !expReg.test(input.defense)? <h4 >{"Enter a Valid defense"}</h4>: false}
+                    {errors.defense || !expReg.test(errors.defense)? <h4 >{"Enter a Valid defense"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -147,7 +203,7 @@ export default function CreatePokemon(){
                     name="speed"
                     onChange={e => handleChange(e)}
                     />
-                    {!input.speed || !expReg.test(input.speed)? <h4 >{"Enter a Valid Speed"}</h4>: false}
+                    {errors.speed || !expReg.test(errors.speed)? <h4 >{"Enter a Valid Speed"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -158,7 +214,7 @@ export default function CreatePokemon(){
                     name="height"
                     onChange={e => handleChange(e)}
                     />
-                    {!input.height || !expReg.test(input.height)? <h4 >{"Enter a Valid Height"}</h4>: false}
+                    {errors.height || !expReg.test(errors.height)? <h4 >{"Enter a Valid Height"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -169,7 +225,7 @@ export default function CreatePokemon(){
                     name="weight"
                     onChange={e => handleChange(e)}
                     />
-                    {!input.weight || !expReg.test(input.weight)? <h4 >{"Enter a Valid Weight"}</h4>: false}
+                    {errors.weight || !expReg.test(errors.weight)? <h4 >{"Enter a Valid Weight"}</h4>: false}
                 </div>
                 {/* ############################## */}
                 <div>
@@ -195,7 +251,7 @@ export default function CreatePokemon(){
                     </select>
                     {/* <ul><li>{input.types.map(e => e +" ,")}</li></ul> */}
                     
-                    
+                    <Link to="/home"><button>Back</button></Link>
                     <button type="submit">Create Pokemon</button>
                 </div>
             </form>
