@@ -167,7 +167,7 @@ const getPokemonType = async (req, res) => {
 };
 
 const createPokemon = async (req, res) => {
-  const { name, type, image, life, attack, defense, speed, height, weight } =
+  const { name, types, image, life, attack, defense, speed, height, weight } =
     req.body;
   try {
     const pokemonCreate = await Pokemon.create({
@@ -183,7 +183,7 @@ const createPokemon = async (req, res) => {
 
     const pokemonType = await Type.findAll({
       
-      where:  {name: type },
+      where:  {name: types },
     });
    
     pokemonCreate.addTypes(pokemonType);
