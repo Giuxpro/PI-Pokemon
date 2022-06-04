@@ -51,10 +51,10 @@ export default function CreatePokemon(){
             error.height = 'Pokemon must have height points';
         }else if(!regexNum.test(input.weight)){
             error.weight = 'Pokemon must have weight points';
-        }else if(!input.types.length){
+        }else if(input.types.length > 2){
             error.types = 'Enter a Type Pokemon';
         }
-
+        
         return error;
     }
 
@@ -85,35 +85,36 @@ export default function CreatePokemon(){
         })
     }
 
-    let regexRating =/[+-]?([0-9]*[.])?\b[0-5]{1,1}\b/; //regex 1-5 decimal inclusive
+    // let regexRating =/[+-]?([0-9]*[.])?\b[0-5]{1,1}\b/; //regex 1-5 decimal inclusive
     let expReg = /^\b[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s0-9]+$/;
+    let regexNum = /^[1-9]$|^[1-9][0-9]$|^(100)$/; // regex for number only between 1 to 600
+    let RegexName = new RegExp(/^\b[A-Za-z\s]+$/g)
     function handleSubmit(e){
         e.preventDefault()
+        
+        if(!input.name){
+            return alert('Enter Pokemon name');
+        }else if(!RegexName.test(input.name)){
+            return alert('The name must only have letters')
+        }else if(!regexNum.test(input.life)){
+            return alert('Enter a Hp points ');
+        }else if(!regexNum.test(input.attack)){
+            return alert('Pokemon must have attack points');
+        }else if(!regexNum.test(input.defense)){
+            return alert('Pokemon must have defense points');
+        }else if(!regexNum.test(input.speed)){
+            return alert('Pokemon must have speed points');
+        }else if(!regexNum.test(input.height)){
+            return alert('Pokemon must have height points');
+        }else if(!regexNum.test(input.weight)){
+            return alert('Pokemon must have weight points');
+        }else if(!input.types.length){
+            return alert('Enter a Type Pokemon');
+        }
 
-
-        // if(!input.name){
-        //     return alert('Enter Pokemon name');
-        // }else if(!expReg.test(input.name)){
-        //     return alert('The name must only have letters or numbers')
-        // }else if(!regexRating.test(input.life)){
-        //     return alert('Enter a Hp points ');
-        // }else if(!regexRating.test(input.attack)){
-        //     return alert('Pokemon must have attack points');
-        // }else if(!regexRating.test(input.defense)){
-        //     return alert('Pokemon must have defense points');
-        // }else if(!regexRating.test(input.speed)){
-        //     return alert('Pokemon must have speed points');
-        // }else if(!regexRating.test(input.height)){
-        //     return alert('Pokemon must have height points');
-        // }else if(!regexRating.test(input.weight)){
-        //     return alert('Pokemon must have weight points');
-        // }else if(!input.types.length){
-        //     return alert('Enter a Type Pokemon');
-        // }
-
-        if(Object.keys(errors).length===0){
-            dispatch(postPokemon(input))
-            setInput({
+        dispatch(postPokemon(input))
+        alert("Pokemon Created!!")
+        setInput({
             name:"",
             image:"",
             life:"",
@@ -122,27 +123,9 @@ export default function CreatePokemon(){
             speed:"",
             height:"",
             weight:"",
-            types:[] 
-            })
-            alert('Pokemon created successfully')
-            navigate("/home")
-        }else{
-            alert('Complete the form correctly')
-        }
-        // dispatch(postPokemon(input))
-        // alert("Pokemon Created!!")
-        // setInput({
-        //     name:"",
-        //     image:"",
-        //     life:"",
-        //     attack:"",
-        //     defense:"",
-        //     speed:"",
-        //     height:"",
-        //     weight:"",
-        //     types:[]
-        // })
-        // navigate("/home")
+            types:[]
+        })
+        navigate("/home")
     }
 
     return(
