@@ -44,7 +44,9 @@ export default function Home(){
     return(
         <div className={styles.homeContainer}>
             <div className={styles.homeTitleContainer}>
+                <Link className={styles.homeTitleh1} to ="/">
                 <h1 className={styles.homeTitle}>Welcome To Pokemons Api</h1>
+                </Link>
             </div>
 
             <div className={styles.homeSearch}>

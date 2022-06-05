@@ -1,11 +1,13 @@
-
+.detailFirstContainer{
+    height: 100vh;
+    background: linear-gradient(45deg, greenyellow, dodgerblue);
+}
 .detailContainer{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 5rem;
-    
+  
 }
 .detailImgContainer{
     
@@ -26,7 +28,7 @@
 }
 .detailTypeContainer{
     border-radius: 15px;
-    border: solid 4px rgb(32, 210, 53);
+    border: solid 4px rgb(28, 51, 31);
 }
 .detailTypeH4{
     margin: 8px;
@@ -67,9 +69,10 @@
 }
 
 .detailBtn {
-    --color: #00A97F;
+    --color: rgb(32, 210, 53);
     --color2: rgb(10, 25, 30);
-    padding: 0.8em 1.75em;
+    padding: 0.5em 1.75em;
+    height: 2.5rem;
     background-color: transparent;
     border-radius: 6px;
     border: .3px solid var(--color);
@@ -78,11 +81,12 @@
     overflow: hidden;
     cursor: pointer;
     z-index: 1;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 17px;
     font-family: 'Roboto', 'Segoe UI', sans-serif;
     text-transform: uppercase;
-    color: var(--color);
+    color: var(--color2);
+    background-color: var(--color);
    }
    
    .detailBtn::after, .detailBtn::before {
@@ -96,7 +100,7 @@
     left: 25%;
     z-index: -1;
     transition: .5s ease-out;
-    background-color: var(--color);
+    background-color: var(--color2);
    }
    
    .detailBtn::before {
@@ -114,7 +118,7 @@
    }
    
    .detailBtn:hover {
-    color: var(--color2);
+    color: aliceblue;
    }
    
    .detailBtn:active {
