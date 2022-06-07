@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {searchBar} from "../../redux/actions"
+import {cleanSearch, searchBar} from "../../redux/actions"
 import styles from "../search_bar/SearchBar.module.css"
 
-export default function Search({setCurrentPage}){
+export default function Search(){
     const dispatch = useDispatch();
     const [name, setName] = useState("")
 
@@ -15,9 +15,9 @@ export default function Search({setCurrentPage}){
 
     function handleSubmit(e){
         e.preventDefault();
+        dispatch(cleanSearch())
         dispatch(searchBar(name))
         setName("")
-        setCurrentPage(1)
     }
 
     return(

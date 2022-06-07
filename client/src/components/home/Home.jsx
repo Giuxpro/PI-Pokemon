@@ -50,9 +50,7 @@ export default function Home(){
             </div>
 
             <div className={styles.homeSearch}>
-                <Search
-                setCurrentPage={setCurrentPage}
-                />
+                <Search />
             </div>
 
             <div className={styles.homePaginado}>

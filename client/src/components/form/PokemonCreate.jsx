@@ -40,29 +40,29 @@ export default function CreatePokemon() {
     if (!input.name) {
       error.name = "Enter Pokemon name";
     }
-    if (!RegexName.test(input.name)) {
+    else if (!RegexName.test(input.name)) {
       error.name = "Enter a valid Pokemon Name";
     }
-    if (!regexNum.test(input.life)) {
-      error.life = "Pokemon must have Life points";
-    }
-    if (!regexNum.test(input.attack)) {
-      error.attack = "Pokemon must have attack points";
-    }
-    if (!regexNum.test(input.defense)) {
-      error.defense = "Pokemon must have defense points";
-    }
-    if (!regexNum.test(input.speed)) {
-      error.speed = "Pokemon must have speed points";
-    }
-    if (!regexNum.test(input.height)) {
-      error.height = "Pokemon must have height points";
-    }
-    if (!regexNum.test(input.weight)) {
+    else if (!regexNum.test(input.weight)) {
       error.weight = "Pokemon must have weight points";
     }
-    if (input.types.length <= 0 || input.types.length > 2) {
-      error.types = "Enter a Type Pokemon";
+    else if (!regexNum.test(input.height)) {
+      error.height = "Pokemon must have height points";
+    }
+    else if (!regexNum.test(input.life)) {
+      error.life = "Pokemon must have Life points";
+    }
+    else if (!regexNum.test(input.attack)) {
+      error.attack = "Pokemon must have attack points";
+    }
+    else if (!regexNum.test(input.defense)) {
+      error.defense = "Pokemon must have defense points";
+    }
+    else if (!regexNum.test(input.speed)) {
+      error.speed = "Pokemon must have speed points";
+    }
+    else if(input.types.length <= 0 || input.types.length > 2) {
+      error.types = "Enter 2 Types Pokemon";
     }
 
     return error;
@@ -81,6 +81,12 @@ export default function CreatePokemon() {
       ...input,
       [e.target.name]: e.target.value,
     });
+    setErrors(
+      validation({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   }
 
   function handleSelect(e) {
@@ -111,23 +117,23 @@ export default function CreatePokemon() {
     );
 
     if (!input.name) {
-      return alert("Enter Pokemon name");
+      return alert("Some fields must be filled");
     } else if (!RegexName.test(input.name)) {
-      return alert("The name must only have letters");
+      return alert("Some fields must be filled");
     } else if (!regexNum.test(input.life)) {
-      return alert("Enter a Hp points ");
+      return alert("Some fields must be filled");
     } else if (!regexNum.test(input.attack)) {
-      return alert("Pokemon must have attack points");
+      return alert("Some fields must be filled");
     } else if (!regexNum.test(input.defense)) {
-      return alert("Pokemon must have defense points");
+      return alert("Some fields must be filled");
     } else if (!regexNum.test(input.speed)) {
-      return alert("Pokemon must have speed points");
+      return alert("Some fields must be filled");
     } else if (!regexNum.test(input.height)) {
-      return alert("Pokemon must have height points");
+      return alert("Some fields must be filled");
     } else if (!regexNum.test(input.weight)) {
-      return alert("Pokemon must have weight points");
+      return alert("Some fields must be filled");
     } else if (input.types.length <= 0 || input.types.length > 2) {
-      return alert("Enter a Type Pokemon");
+      return alert("Enter max 2 types pokemos");
     }
 
     dispatch(postPokemon(input));
@@ -164,7 +170,7 @@ export default function CreatePokemon() {
                   placeholder="Name"
                   onChange={(e) => handleChange(e)}
                 />
-                {errors.name || !expReg.test(errors.name) ? (
+                {errors.name && RegexName.test(errors.name) ? (
                   <h4 className={styles.msjError}>{errors.name}</h4>
                 ) : (
                   false
@@ -181,7 +187,7 @@ export default function CreatePokemon() {
                   placeholder="Weight"
                   onChange={(e) => handleChange(e)}
                 />
-                {errors.weight || !expReg.test(errors.weight) ? (
+                {errors.weight && !regexNum.test(errors.weight) ? (
                   <h4 className={styles.msjError}>{errors.weight}</h4>
                 ) : (
                   false

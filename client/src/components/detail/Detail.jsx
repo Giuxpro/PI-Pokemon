@@ -1,6 +1,6 @@
 import React,{useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { getPokeById, cleanDetail } from "../../redux/actions";
+import { getPokeById } from "../../redux/actions";
 import { Link, useParams } from "react-router-dom";
 import img from "../../assets/q2.gif";
 import styles from "../detail/Detail.module.css"
@@ -12,7 +12,6 @@ export default function PokemonDetail(){
     const {id} = useParams()
 
  useEffect(() => {
-    dispatch(cleanDetail())
     dispatch(getPokeById(id));
  },[dispatch, id])
 

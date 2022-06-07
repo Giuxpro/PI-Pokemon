@@ -67,6 +67,11 @@ export function postPokemon(payload){
         return data
     }
 }
+export function cleanSearch(){
+    return{
+        type:"CLEAN_SEARCH"
+    }
+}
 
 export function getPokeById(id){
     return async function(dispatch){
@@ -78,8 +83,5 @@ export function getPokeById(id){
     }
 }
 
-export function cleanDetail(){
-    return{
-        type: "CLEAN_DETAIL",
-    }
-}
+
+

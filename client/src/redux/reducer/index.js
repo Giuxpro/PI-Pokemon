@@ -41,17 +41,17 @@ function rootReducer(state = initialState, action){
         ...state,
         pokemons: action.payload,
       }
+    case "CLEAN_SEARCH":
+      return{
+        ...state,
+        pokemons:[]
+      }
     case "POKE_ID":
       return{
         ...state,
         detail:action.payload,
       }
-    case "CLEAN_DETAIL":
-      return{
-        ...state,
-        detail:[]
-      }
-  
+    
     case "POST_POKE":
       return{
         ...state
