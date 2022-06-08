@@ -20,7 +20,7 @@ function rootReducer(state = initialState, action){
         ...state,
         types: action.payload,
       }
-    case "POKE_BY_TYPES":
+    case "POKE_BY_TYPES": 
       const allPokes = state.backUpPoke;
       const filterPokeByTypes = action.payload === "Type"? allPokes : allPokes.filter( e => e.types.map(e => e.name).includes(action.payload))
 
@@ -46,6 +46,7 @@ function rootReducer(state = initialState, action){
         ...state,
         pokemons:[]
       }
+    
     case "POKE_ID":
       return{
         ...state,

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../pagination/Pagination.module.css"
 
-export default function Paginado({paginado, allPokemons, pokemonsPerPage}){
+export default function Paginado({paginado, allPokemons, pokemonsPerPage, currentPage}){
     const pageNumber = [];
 
     for(let i = 1; i <= Math.ceil(allPokemons/pokemonsPerPage); i++){
@@ -23,4 +23,5 @@ export default function Paginado({paginado, allPokemons, pokemonsPerPage}){
             </ul>
         </nav>
     )
+   
 }

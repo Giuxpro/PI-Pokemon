@@ -92,7 +92,7 @@ export default function CreatePokemon() {
   function handleSelect(e) {
     setInput({
       ...input,
-      types: [...new Set([...input.types, e.target.value])],
+      types: [...input.types, e.target.value],
     });
   }
 

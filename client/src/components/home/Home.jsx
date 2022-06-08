@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
-import { getPokemos, getTypes } from "../../redux/actions";
+import { getPokemos, getTypes, hightStr } from "../../redux/actions";
 import { Link } from "react-router-dom"
 import Card from "../card/Card";
 import Paginado from "../pagination/Pagination";
@@ -15,7 +15,6 @@ import styles from "../home/Home.module.css"
 export default function Home(){
     const dispatch = useDispatch();
     const allPokemons = useSelector(state => state.pokemons);
-  
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
     const indexLastPoke = currentPage * pokemonsPerPage;
@@ -43,6 +42,7 @@ export default function Home(){
 
     return(
         <div className={styles.homeContainer}>
+           
             <div className={styles.homeTitleContainer}>
                 <Link className={styles.homeTitleh1} to ="/">
                 <h1 className={styles.homeTitle}>Welcome To Pokemons Api</h1>
@@ -58,7 +58,9 @@ export default function Home(){
                 pokemonsPerPage={pokemonsPerPage}
                 allPokemons={allPokemons.length}
                 paginado={paginado}
+                currentPage={currentPage}
                 />
+
             </div>
 
            
