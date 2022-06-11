@@ -4,13 +4,12 @@ import { useDispatch } from "react-redux";
 import {cleanSearch, searchBar} from "../../redux/actions"
 import styles from "../search_bar/SearchBar.module.css"
 
-export default function Search(){
+export default function Search({setCurrentPage}){
     const dispatch = useDispatch();
     const [name, setName] = useState("")
 
     function handleinputChange(e){
-        setName(e.target.value)
-        
+        setName(e.target.value)   
     }
 
     function handleSubmit(e){
@@ -18,6 +17,7 @@ export default function Search(){
         dispatch(cleanSearch())
         dispatch(searchBar(name))
         setName("")
+        setCurrentPage(1)
     }
 
     return(

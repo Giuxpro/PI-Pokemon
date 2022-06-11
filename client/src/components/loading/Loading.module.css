@@ -1,4 +1,4 @@
-.spinner {
+/* .spinner {
     --size-of-spinner: 50px;
     --spinner-border-width: 4px;
     --spinner-color: #08c18a;
@@ -36,4 +36,15 @@
     100% {
      transform: rotate(360deg) scale(1)
     }
-   }
+   } */
+
+.loadingContainer{
+    display: flex;
+    justify-content: center;
+    border-radius: 35px;
+}
+.loadingImg{
+    height: 100px;
+    width: 100px;
+    border-radius: 150px;
+}

@@ -1,9 +1,11 @@
 import React,{useEffect} from "react";
 import { useDispatch,useSelector } from "react-redux";
-import { getPokeById } from "../../redux/actions";
+import { cleanDetail, getPokeById } from "../../redux/actions";
 import { Link, useParams } from "react-router-dom";
 import img from "../../assets/q2.gif";
 import styles from "../detail/Detail.module.css"
+import Loading from "../loading/Loading";
+
 
 
 
@@ -13,6 +15,9 @@ export default function PokemonDetail(){
 
  useEffect(() => {
     dispatch(getPokeById(id));
+    return ()=>{
+        dispatch(cleanDetail())
+    }
  },[dispatch, id])
 
  const pokeDetail = useSelector(state => state.detail)
@@ -23,7 +28,7 @@ export default function PokemonDetail(){
                 pokeDetail.length > 0?
                 <div className={styles.detailContainer}>
                     <div className={styles.detailImgContainer}>
-                        <img className={styles.detailImg} src={regexUrl.test(pokeDetail[0].image)?pokeDetail[0].image: img} alt="pokemon_img" />
+                        <img className={styles.detailImg} src={regexUrl.test(pokeDetail[0].image)?pokeDetail[0].image: img} alt="pokemon_img" width="300px" height="350px" />
                     </div>
                     <div className={styles.detailStatsContainer}>
                         <h1 className={styles.detailName}>{pokeDetail[0].name}</h1>
@@ -65,7 +70,10 @@ export default function PokemonDetail(){
                         </div>
                     </div>
                 </div>
-                : <div><h4>Not Found</h4></div>
+                : <div>
+                    <Loading/>
+                    <h4>Loading...</h4>
+                  </div>
             }
 
             <Link to="/home">

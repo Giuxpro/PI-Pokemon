@@ -60,7 +60,7 @@
 .createGroupCont2{
     order: 3;
 }
-.createDeleteTypes{
+/* .createDeleteTypes{
 display: flex;
 flex-direction: column;
 position: relative;
@@ -68,7 +68,7 @@ top: -450px;
 left: 575px;
 height: 2.5rem;
 width: 6rem;
-}
+} */
 
 .createBtnTypes{
     height: 1.7rem;
@@ -83,4 +83,16 @@ width: 6rem;
 }
 .createBtnTypes:hover{
 transform: scale(1.1);
+}
+.createImgPreviw{
+    display:flex;
+    flex-wrap: nowrap;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    
+}
+.imgPreview{
+    border-radius: 35px;
+    height: 200px;
+    width: 180px;
 }

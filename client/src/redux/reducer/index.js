@@ -112,7 +112,13 @@ function rootReducer(state = initialState, action){
         ...state,
         pokemons: allSortAlpha,
       }
-
+   case "CLEAN":{
+    return{
+      ...state,
+      detail:[]
+    }
+   }
+    
       default: return state;
   }
 }

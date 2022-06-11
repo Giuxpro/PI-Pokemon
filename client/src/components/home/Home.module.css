@@ -13,7 +13,7 @@ background-size: cover;
     display: grid;
     grid-template-columns: repeat(auto-fill, 245px);
     gap: 5px;
-    margin: 0rem 4rem 0rem 4rem;
+    margin: 0rem 4rem 0rem 3rem;
     justify-content: center;
 }
 .homeCardRender2{
@@ -61,4 +61,12 @@ background-size: cover;
 .homeFilter{
     height: 5rem;
     width: 6rem;
+}
+.homeLoadContainer{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    width: 90%;
+    margin-bottom: 50px;
 }

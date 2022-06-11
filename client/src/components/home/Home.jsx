@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import {useSelector, useDispatch} from "react-redux";
-import { getPokemos, getTypes, hightStr } from "../../redux/actions";
+import { getPokemos, getTypes } from "../../redux/actions";
 import { Link } from "react-router-dom"
 import Card from "../card/Card";
 import Paginado from "../pagination/Pagination";
@@ -11,12 +11,14 @@ import SortByStrength from "../filters/SortByStrength";
 import SortAlphabeticaly from "../filters/SortAlphabeticaly";
 import Search from "../search_bar/SeachBar";
 import styles from "../home/Home.module.css"
+import Loading from "../loading/Loading";
+
 
 export default function Home(){
     const dispatch = useDispatch();
     const allPokemons = useSelector(state => state.pokemons);
     const [currentPage, setCurrentPage] = useState(1);
-    const [pokemonsPerPage, setPokemonsPerPage] = useState(12);
+    const [pokemonsPerPage, setPokemonsPerPage] = useState(15);
     const indexLastPoke = currentPage * pokemonsPerPage;
     const indexFirstPoke = indexLastPoke - pokemonsPerPage;
     const currentPoke = allPokemons.slice(indexFirstPoke, indexLastPoke);
@@ -37,12 +39,12 @@ export default function Home(){
     function handleReload(e){
         e.preventDefault();
         dispatch(getPokemos())
+        setCurrentPage(1)
     }
 
 
     return(
         <div className={styles.homeContainer}>
-           
             <div className={styles.homeTitleContainer}>
                 <Link className={styles.homeTitleh1} to ="/">
                 <h1 className={styles.homeTitle}>Welcome To Pokemons Api</h1>
@@ -50,7 +52,9 @@ export default function Home(){
             </div>
 
             <div className={styles.homeSearch}>
-                <Search />
+                <Search 
+                setCurrentPage={setCurrentPage}
+                />
             </div>
 
             <div className={styles.homePaginado}>
@@ -58,7 +62,6 @@ export default function Home(){
                 pokemonsPerPage={pokemonsPerPage}
                 allPokemons={allPokemons.length}
                 paginado={paginado}
-                currentPage={currentPage}
                 />
 
             </div>
@@ -91,7 +94,8 @@ export default function Home(){
             </div>
             
             <div className={styles.homeCardsRender}>
-                {
+                {currentPoke.length > 0 ?
+                
                     currentPoke?.map( e =>{
                         return(
                             <div className={styles.homeCardRender2} key={e.id}>
@@ -101,6 +105,10 @@ export default function Home(){
                             </div>
                         )
                     })
+                    :<div className={styles.homeLoadContainer}>
+                        <Loading/>
+                        <h4>Loading...</h4>
+                    </div>
                 }
             </div>
         </div>

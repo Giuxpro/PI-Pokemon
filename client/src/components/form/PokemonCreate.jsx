@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { postPokemon, getTypes, getPokemos } from "../../redux/actions";
 import styles from "../form/PokemonCreate.module.css";
+import image from "../../assets/q2.gif";
 
 export default function CreatePokemon() {
   
@@ -92,7 +93,7 @@ export default function CreatePokemon() {
   function handleSelect(e) {
     setInput({
       ...input,
-      types: [...input.types, e.target.value],
+      types: [...new Set([...input.types, e.target.value])],
     });
   }
 
@@ -102,7 +103,7 @@ export default function CreatePokemon() {
       types: input.types.filter((type) => type !== e),
     });
   }
-
+  var regexUrl = /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
   // let regexRating =/[+-]?([0-9]*[.])?\b[0-5]{1,1}\b/; //regex 1-5 decimal inclusive
   let expReg = /^\b[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s0-9]+$/;
   let regexNum = /^[1-9]$|^[1-9][0-9]$|^(100)$/; // regex for number only between 1 to 600
@@ -310,7 +311,7 @@ export default function CreatePokemon() {
             </div>
           
           {/* ############################## */}
-          <div>
+          <div className={styles.createImgPreviw}>
             <div className={styles.createSelectTypes}>
               <select className={styles.createSelectOpt} onChange={(e) => handleSelect(e)}>
                 {types?.map((e) => {
@@ -322,6 +323,17 @@ export default function CreatePokemon() {
                 })}
               </select>
               {/* <ul><li>{input.types.map(e => e +" ,")}</li></ul> */}
+              <div className={styles.createDeleteTypes}>
+                {input.types.map((e) => (
+                  <div key={e}>
+                    <button className={styles.createBtnTypes} onClick={() => handleDelete(e)}>{e}</button>
+                  </div>
+                ))}
+      </div>
+            </div>
+            <div className={styles.createImgPreviw}>
+              <h4> Url-Image preview</h4>
+              <img className={styles.imgPreview} src={regexUrl.test(input.image)? input.image: image} alt="imgPreview" />
             </div>
           </div>
           </div>
@@ -333,15 +345,11 @@ export default function CreatePokemon() {
             </Link>
             <button className={styles.createBtnform} type="submit">Create Pokemon</button>
           </div>
+
+          
         </form>
       </div>
-      <div className={styles.createDeleteTypes}>
-        {input.types.map((e) => (
-          <div key={e}>
-            <button className={styles.createBtnTypes} onClick={() => handleDelete(e)}>{e}</button>
-          </div>
-        ))}
-      </div>
+     
     </div>
   );
 }

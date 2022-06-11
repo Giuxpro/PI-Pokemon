@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import img from "../../assets/q2.gif"
 import styles from "../card/Card.module.css"
 
+
 export default function Card({image, name, types, attack, id}){
     var regexUrl = /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
+   
     return(
         <div className={styles.cardContainer}>
             <div className={styles.cardImgContainer}>
@@ -22,6 +24,7 @@ export default function Card({image, name, types, attack, id}){
             <h5 className={styles.cardAttack}>{attack}</h5>
             <h5 className={styles.cardTypes}><div className={styles.cardTypes2}>{types?.map(e =><span key={e.name}>{e.name}</span> )}</div></h5>
         </div>
+        
         </div>
     )
 }
