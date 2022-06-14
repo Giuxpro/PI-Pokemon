@@ -16,4 +16,5 @@ router.get("/types", getPokemonType)
 router.post("/pokemons", createPokemon)
 
 
+
 module.exports = router;

@@ -4,7 +4,7 @@ const { Pokemon, Type } = require("../db");
 
 const getAllPokemons = async () => {
   try {
-    let pokeUrl = await axios.get("https://pokeapi.co/api/v2/pokemon"); // hago un request para los primeros 20 pokemons
+    let pokeUrl = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=60&offset=0"); // hago un request para los primeros 20 pokemons
     let pokeUrlNext = await axios.get(pokeUrl.data.next); // hago un request para los next 20 pokemons
     let resultPokemon = pokeUrl.data.results.concat(pokeUrlNext.data.results); //concateno para traer los 40 poke
     const pokemons = await Promise.all(
@@ -121,9 +121,7 @@ const getPokemonById = async (req, res) => {
         ? res.status(200).send(pokeIdDb)
         : res.status(404).send({ msg: "Pokemon Not Found in DB by ID" });
     } else {
-      const pokeIdApi = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${id}`
-      );
+      const pokeIdApi = await axios.get( `https://pokeapi.co/api/v2/pokemon/${id}`);
       const arr = [pokeIdApi.data];
 
       const pokeId = arr.map((e) => {
@@ -193,6 +191,7 @@ const createPokemon = async (req, res) => {
     console.log("error en createPokemon" + error);
   }
 };
+
 
 module.exports = {
   getAllPokemons,
