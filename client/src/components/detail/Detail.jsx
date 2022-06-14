@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import img from "../../assets/q2.gif";
 import styles from "../detail/Detail.module.css"
 import Loading from "../loading/Loading";
+// import ih from "../../assets/Badges/badge_bug.png"
 
 
 
@@ -21,6 +22,11 @@ export default function PokemonDetail(){
  },[dispatch, id])
 
  const pokeDetail = useSelector(state => state.detail)
+
+// const typesMap =  pokeDetail[0]?.types.map(e => require(`../../assets/Badges/badge_${e.name}.png`))
+//  console.log(typesMap)
+
+
  var regexUrl = /[a-z0-9-\.]+\.[a-z]{2,4}\/?([^\s<>\#%"\,\{\}\\|\\\^\[\]`]+)?$/;
     return(
         <div className={styles.detailFirstContainer}>
@@ -28,7 +34,7 @@ export default function PokemonDetail(){
                 pokeDetail.length > 0?
                 <div className={styles.detailContainer}>
                     <div className={styles.detailImgContainer}>
-                        <img className={styles.detailImg} src={regexUrl.test(pokeDetail[0].image)?pokeDetail[0].image: img} alt="pokemon_img" width="300px" height="350px" />
+                        <img className={styles.detailImg} src={regexUrl.test(pokeDetail[0].image)?pokeDetail[0].image: img} alt="pokemon_img"  />
                     </div>
                     <div className={styles.detailStatsContainer}>
                         <h1 className={styles.detailName}>{pokeDetail[0].name}</h1>
@@ -67,6 +73,7 @@ export default function PokemonDetail(){
                         <div className={styles.detailTypeContainer}>
                             <div><h3 className={styles.type}>Type</h3></div>
                             <h4 className={styles.detailTypeH4}>{pokeDetail[0].types?.map(e =><div key={e.name}>{e.name}</div> )}</h4>
+                          
                         </div>
                     </div>
                 </div>

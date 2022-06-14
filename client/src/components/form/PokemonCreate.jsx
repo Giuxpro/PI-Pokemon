@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postPokemon, getTypes, getPokemos } from "../../redux/actions";
 import styles from "../form/PokemonCreate.module.css";
 import image from "../../assets/q2.gif";
+import Swal from "sweetalert2";
 
 export default function CreatePokemon() {
   
@@ -118,27 +119,69 @@ export default function CreatePokemon() {
     );
 
     if (!input.name) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (!RegexName.test(input.name)) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (!regexNum.test(input.life)) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (!regexNum.test(input.attack)) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (!regexNum.test(input.defense)) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (!regexNum.test(input.speed)) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (!regexNum.test(input.height)) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (!regexNum.test(input.weight)) {
-      return alert("Some fields must be filled");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Some fields must be filled!',
+        showConfirmButton: true,
+      });
     } else if (input.types.length <= 0 || input.types.length > 2) {
-      return alert("Enter max 2 types pokemos");
+      return Swal.fire({
+        icon: 'warning',
+        title: 'Enter max 2 types pokemos!',
+        showConfirmButton: true,
+      });
     }
 
     dispatch(postPokemon(input));
-    alert("Pokemon Created!!");
+    // alert("Pokemon Created!!");
+    Swal.fire({
+      icon: 'success',
+      title: 'Pokemon Created!',
+      showConfirmButton: false,
+      timer: 2000
+    })
     setInput({
       name: "",
       image: "",
