@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function getPokemos(){
     return async function(dispatch){
-        const data = await axios.get(`http://localhost:3001/pokemons`)
+        const data = await axios.get(`/pokemons`)
         
         return dispatch({
             type:"GET_POKE",
@@ -14,7 +14,7 @@ export function getPokemos(){
 
 export function getTypes(){
     return async function(dispatch){
-        const data = await axios.get(`http://localhost:3001/types`) 
+        const data = await axios.get(`/types`) 
         return dispatch({
             type: "GET_TYPES",
             payload: data.data,
@@ -53,7 +53,7 @@ export function sortAlphabeticaly(payload){
 
 export function searchBar(name){
     return async function(dispatch){
-        const data = await axios.get(`http://localhost:3001/pokemons?name=${name}`)
+        const data = await axios.get(`/pokemons?name=${name}`)
         return dispatch({
             type: "SEARCH",
             payload: data.data,
@@ -63,7 +63,7 @@ export function searchBar(name){
 
 export function postPokemon(payload){
     return async function(dispatch){
-        const data = await axios.post(`http://localhost:3001/pokemons`,payload)
+        const data = await axios.post(`/pokemons`,payload)
         return data
     }
 }
@@ -75,7 +75,7 @@ export function cleanSearch(){
 
 export function getPokeById(id){
     return async function(dispatch){
-        const data = await axios.get(`http://localhost:3001/pokemons/${id}`)
+        const data = await axios.get(`/pokemons/${id}`)
         return dispatch({
             type:"POKE_ID",
             payload:data.data
